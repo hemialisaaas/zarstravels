@@ -151,15 +151,23 @@ class ConfirmationPage extends StatelessWidget {
   }
 
   Widget _buildReadOnlyTextField(String label, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: TextField(
-        decoration: InputDecoration(
-          labelText: label,
-          border: OutlineInputBorder(),
-        ),
-        controller: TextEditingController(text: value),
-        readOnly: true,
+  // Return a Padding widget to add vertical spacing around the TextField
+  return Padding(
+    // Add symmetric vertical padding of 8.0
+    padding: const EdgeInsets.symmetric(vertical: 8.0),
+    // Define the TextField widget
+    child: TextField(
+      // Define the decoration for the TextField
+      decoration: InputDecoration(
+        // Set the label text for the TextField
+        labelText: label,
+        // Add an outline border around the TextField
+        border: OutlineInputBorder(),
+      ),
+      // Set the TextEditingController with the initial value
+      controller: TextEditingController(text: value),
+      // Make the TextField read-only
+      readOnly: true,
       ),
     );
   }
