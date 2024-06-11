@@ -312,7 +312,7 @@ class _SearchWidgetState extends State<SearchWidget> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.cyan,
               ),
-              child: Text("Search"),
+              child: Text("Book Now"),
             ),
           ),
         ],
