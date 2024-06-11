@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+// Widget AuthPage yang mencakup login dan registrasi
 class AuthPage extends StatefulWidget {
   @override
   _AuthPageState createState() => _AuthPageState();
@@ -12,6 +13,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
   @override
   void initState() {
     super.initState();
+    // Inisialisasi TabController dengan dua tab (Login dan Register)
     _tabController = TabController(length: 2, vsync: this);
   }
 
@@ -21,6 +23,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
     super.dispose();
   }
 
+  // Fungsi untuk menampilkan dialog error
   void _showErrorDialog(String message) {
     showDialog(
       context: context,
@@ -39,6 +42,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
     );
   }
 
+  // Fungsi untuk login dengan email dan password
   Future<void> _login(String email, String password) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -55,6 +59,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
     }
   }
 
+  // Fungsi untuk registrasi dengan email dan password
   Future<void> _register(String email, String password) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -87,6 +92,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
       body: TabBarView(
         controller: _tabController,
         children: [
+          // Halaman Login dan Register dengan fungsi onSubmit masing-masing
           LoginPage(onSubmit: _login),
           RegisterPage(onSubmit: _register),
         ],
@@ -95,6 +101,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
   }
 }
 
+// Widget untuk halaman login
 class LoginPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -110,11 +117,13 @@ class LoginPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Logo
             Image.asset(
               'assets/logo.png',
               height: 300,
             ),
             SizedBox(height: 20),
+            // TextField untuk Email
             TextField(
               controller: emailController,
               decoration: InputDecoration(
@@ -124,6 +133,7 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
+            // TextField untuk Password
             TextField(
               controller: passwordController,
               decoration: InputDecoration(
@@ -134,6 +144,7 @@ class LoginPage extends StatelessWidget {
               obscureText: true,
             ),
             SizedBox(height: 20),
+            // Tombol Login
             ElevatedButton(
               onPressed: () => onSubmit(emailController.text, passwordController.text),
               child: Text('Login'),
@@ -145,6 +156,7 @@ class LoginPage extends StatelessWidget {
   }
 }
 
+// Widget untuk halaman registrasi
 class RegisterPage extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -162,11 +174,13 @@ class RegisterPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Logo
             Image.asset(
               'assets/logo.png',
               height: 250,
             ),
             SizedBox(height: 20),
+            // TextField untuk Nama
             TextField(
               controller: nameController,
               decoration: InputDecoration(
@@ -176,6 +190,7 @@ class RegisterPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
+            // TextField untuk Email
             TextField(
               controller: emailController,
               decoration: InputDecoration(
@@ -185,6 +200,7 @@ class RegisterPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
+            // TextField untuk Password
             TextField(
               controller: passwordController,
               decoration: InputDecoration(
@@ -195,6 +211,7 @@ class RegisterPage extends StatelessWidget {
               obscureText: true,
             ),
             SizedBox(height: 20),
+            // TextField untuk Konfirmasi Password
             TextField(
               controller: confirmPasswordController,
               decoration: InputDecoration(
@@ -205,6 +222,7 @@ class RegisterPage extends StatelessWidget {
               obscureText: true,
             ),
             SizedBox(height: 25),
+            // Tombol Register
             ElevatedButton(
               onPressed: () {
                 if (passwordController.text == confirmPasswordController.text) {
@@ -215,7 +233,7 @@ class RegisterPage extends StatelessWidget {
                   );
                 }
               },
-              child : Text('Register')
+              child: Text('Register'),
             ),
           ],
         ),
