@@ -17,6 +17,7 @@ void main() async {
   runApp(TravelApp());
 }
 
+//travelapp
 class TravelApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -118,6 +119,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
+//showlogoutdialog
   void _showLogoutDialog(BuildContext context) {
     showDialog(
       context: context,
