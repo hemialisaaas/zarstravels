@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+// Kelas PenawaranSpesialPage yang menampilkan detail penawaran spesial
 class PenawaranSpesialPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // AppBar dengan judul dan tombol login
       appBar: AppBar(
         title: Text("ZarsTravel's"),
         backgroundColor: Colors.grey[850],
@@ -14,16 +16,18 @@ class PenawaranSpesialPage extends StatelessWidget {
           )
         ],
       ),
-      drawer: AppDrawer(),
+      drawer: AppDrawer(), // Menambahkan drawer navigasi
+      // Menggunakan SingleChildScrollView untuk memungkinkan scroll pada konten
       body: SingleChildScrollView(
         child: Stack(
           children: [
+            // Background image dengan efek gelap
             Container(
               width: double.infinity,
               height: MediaQuery.of(context).size.height,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/bali.jpg'), // Replace with your image path
+                  image: AssetImage('assets/bali.jpg'), // Ganti dengan path gambar Anda
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(
                     Colors.black.withOpacity(0.5),
@@ -32,11 +36,13 @@ class PenawaranSpesialPage extends StatelessWidget {
                 ),
               ),
             ),
+            // Konten utama halaman
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Judul "Bali"
                   Text(
                     'Bali',
                     style: TextStyle(
@@ -45,6 +51,7 @@ class PenawaranSpesialPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  // Rating dengan ikon bintang
                   Row(
                     children: [
                       Icon(Icons.star, color: Colors.yellow),
@@ -60,16 +67,19 @@ class PenawaranSpesialPage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 20),
+                  // Detail penawaran spesial
                   Text(
                     '> 5 Days 6 Nights\n> 2 Person\n> 5 Star Accommodation\n> Transportation\n> Food Facilities',
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                   SizedBox(height: 20),
+                  // Deskripsi penawaran spesial
                   Text(
                     'Jelajahi surga tropis ini dengan penawaran eksklusif yang kami persiapkan untuk Anda. Dari liburan romantis hingga petualangan penuh keberanian, Bali menawarkan pengalaman yang tak terlupakan bagi setiap jenis wisatawan. Dengan paket yang dirancang khusus, Anda dapat mengeksplorasi keindahan pantai berpasir putih, menyelami budaya yang kaya, dan menikmati keajaiban alam yang memukau, semua dengan harga istimewa yang tidak akan Anda temukan di tempat lain.',
                     style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                   SizedBox(height: 20),
+                  // Tombol "Booking"
                   Align(
                     alignment: Alignment.center,
                     child: ElevatedButton(
@@ -83,6 +93,7 @@ class PenawaranSpesialPage extends StatelessWidget {
                 ],
               ),
             ),
+            // Penawaran spesial dengan diskon besar
             Positioned(
               top: 100,
               right: 20,
@@ -119,6 +130,7 @@ class PenawaranSpesialPage extends StatelessWidget {
   }
 }
 
+// Kelas AppDrawer untuk menampilkan drawer navigasi
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -126,10 +138,11 @@ class AppDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
+          // Header drawer dengan gambar dan judul
           DrawerHeader(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('banner.jpg'), // Replace with your image URL
+                image: AssetImage('banner.jpg'), // Ganti dengan URL gambar Anda
                 fit: BoxFit.cover,
               ),
             ),
@@ -142,6 +155,7 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
           ),
+          // Daftar menu dalam drawer
           ListTile(
             leading: Icon(Icons.home),
             title: Text('Home'),
