@@ -204,7 +204,7 @@ class RegisterPage extends StatelessWidget {
               ),
               obscureText: true,
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 25),
             ElevatedButton(
               onPressed: () {
                 if (passwordController.text == confirmPasswordController.text) {
