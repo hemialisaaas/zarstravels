@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-//blogpagee
+//blogpage
 class BlogPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
