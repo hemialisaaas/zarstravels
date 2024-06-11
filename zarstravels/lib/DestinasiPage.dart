@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+//destinasipage
 class DestinasiPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
