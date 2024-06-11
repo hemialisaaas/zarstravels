@@ -182,7 +182,7 @@ class AppDrawer extends StatelessWidget {
             leading: Icon(Icons.info),
             title: Text('Tentang Kami'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, '/tentang-kami');
+              Navigator.pushReplacementNamed(context, '/tentang-kami'); // navigator("tentang-kami")
             },
           ),
         ],
