@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "461584909598",
+    "project_id": "zarstravel-ea098",
+    "storage_bucket": "zarstravel-ea098.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:461584909598:android:f7c1d7769a37a5cdd4b50f",
+        "android_client_info": {
+          "package_name": "com.example.zarstravels"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe8o8LW6W1JZQY4FQ-ar799Fj-koZsnRY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
