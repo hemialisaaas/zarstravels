@@ -215,7 +215,7 @@ class RegisterPage extends StatelessWidget {
                   );
                 }
               },
-              child: Text('Register'),
+              child : Text('Register')
             ),
           ],
         ),
