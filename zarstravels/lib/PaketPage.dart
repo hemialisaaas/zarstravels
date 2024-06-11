@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'order.dart'; // Import OrderPage
+import 'order.dart'; // Import OrderPage untuk navigasi ke halaman pemesanan
 
 
-//classpage
+// Kelas PaketPage yang menampilkan daftar paket perjalanan
 class PaketPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -13,12 +13,14 @@ class PaketPage extends StatelessWidget {
         title: Text("ZarsTravel's"),
         backgroundColor: Colors.grey[850],
         actions: [
+          // StreamBuilder untuk memantau perubahan status autentikasi pengguna
           StreamBuilder<User?>(
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.active) {
                 final user = snapshot.data;
                 if (user == null) {
+                  // Jika pengguna belum login, tampilkan tombol "Login"
                   return TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/auth');
@@ -26,6 +28,7 @@ class PaketPage extends StatelessWidget {
                     child: Text("Login", style: TextStyle(color: Colors.cyan)),
                   );
                 } else {
+                  // Jika pengguna sudah login, tampilkan email pengguna dengan opsi logout
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: GestureDetector(
@@ -35,19 +38,24 @@ class PaketPage extends StatelessWidget {
                   );
                 }
               }
+              // Tampilkan indikator loading saat menunggu status autentikasi
               return CircularProgressIndicator();
             },
           )
         ],
       ),
+      // Drawer navigasi untuk akses ke berbagai halaman dalam aplikasi
       drawer: AppDrawer(),
+      // LayoutBuilder untuk menyesuaikan tampilan berdasarkan ukuran layar
       body: LayoutBuilder(
         builder: (context, constraints) {
+          // Tampilan untuk layar kecil (misalnya, ponsel)
           if (constraints.maxWidth < 600) {
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Judul halaman "Paket Spesial Kami"
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Text(
@@ -55,6 +63,7 @@ class PaketPage extends StatelessWidget {
                       style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                   ),
+                  // Deskripsi singkat tentang paket spesial
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
@@ -63,6 +72,7 @@ class PaketPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 20),
+                  // ListView untuk menampilkan paket dalam bentuk daftar
                   ListView(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
@@ -79,10 +89,12 @@ class PaketPage extends StatelessWidget {
               ),
             );
           } else {
+            // Tampilan untuk layar besar (misalnya, tablet atau desktop)
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Judul halaman "Paket Spesial Kami"
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Text(
@@ -90,6 +102,7 @@ class PaketPage extends StatelessWidget {
                       style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                   ),
+                  // Deskripsi singkat tentang paket spesial
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
@@ -98,6 +111,7 @@ class PaketPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 20),
+                  // GridView untuk menampilkan paket dalam bentuk grid
                   GridView.count(
                     crossAxisCount: 2,
                     crossAxisSpacing: 10,
@@ -122,11 +136,13 @@ class PaketPage extends StatelessWidget {
     );
   }
 
+  // Fungsi untuk membangun kartu paket perjalanan
   Widget buildPackageCard(BuildContext context, String title, String price, String imageUrl, String departureLocation, String destinationLocation) {
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          // Menampilkan gambar paket perjalanan
           Container(
             height: 150,
             child: Image.asset(
@@ -135,6 +151,7 @@ class PaketPage extends StatelessWidget {
               width: double.infinity,
             ),
           ),
+          // Menampilkan informasi paket perjalanan
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -150,11 +167,13 @@ class PaketPage extends StatelessWidget {
                   style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
                 SizedBox(height: 5),
+                // Menampilkan detail paket
                 Text(
                   '> 3 Hari 2 Malam\n> Bintang 4\n> Travel Antar Kota\n> Fasilitas Makan',
                   style: TextStyle(fontSize: 14, color: Colors.grey),
                 ),
                 SizedBox(height: 5),
+                // Menampilkan rating paket
                 Row(
                   children: [
                     Icon(Icons.star, color: Colors.yellow),
@@ -170,13 +189,14 @@ class PaketPage extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 10),
+                // Tombol untuk memesan paket
                 Align(
                   alignment: Alignment.center,
                   child: ElevatedButton(
                     onPressed: () {
                       final user = FirebaseAuth.instance.currentUser;
                       if (user == null) {
-                        Navigator.pushNamed(context, '/auth');
+                        Navigator.pushNamed(context, '/auth'); // Jika belum login, arahkan ke halaman login
                       } else {
                         Navigator.push(
                           context,
@@ -191,7 +211,7 @@ class PaketPage extends StatelessWidget {
                               destinationLocation: destinationLocation,
                               schedule: '',
                               numberOfPassengers: '1',
-                              price: price.replaceAll('.', ''), // Removing dots from price
+                              price: price.replaceAll('.', ''), // Menghapus titik dari harga
                             ),
                           ),
                         );
@@ -211,6 +231,7 @@ class PaketPage extends StatelessWidget {
     );
   }
 
+  // Fungsi untuk menampilkan dialog logout
   void _showLogoutDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -237,6 +258,7 @@ class PaketPage extends StatelessWidget {
   }
 }
 
+// Kelas AppDrawer untuk menampilkan drawer navigasi
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -244,6 +266,7 @@ class AppDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
+          // Header drawer dengan gambar dan judul
           DrawerHeader(
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -260,6 +283,7 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
           ),
+          // Daftar menu dalam drawer
           ListTile(
             leading: Icon(Icons.home),
             title: Text('Home'),
